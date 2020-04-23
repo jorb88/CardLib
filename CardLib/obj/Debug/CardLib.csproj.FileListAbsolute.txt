@@ -1,0 +1,10 @@
+C:\Users\grego\source\repos\CardLib\CardLib\bin\Debug\CardLib.dll
+C:\Users\grego\source\repos\CardLib\CardLib\bin\Debug\CardLib.pdb
+C:\Users\grego\source\repos\CardLib\CardLib\obj\Debug\CardLib.csproj.CoreCompileInputs.cache
+C:\Users\grego\source\repos\CardLib\CardLib\obj\Debug\CardLib.dll
+C:\Users\grego\source\repos\CardLib\CardLib\obj\Debug\CardLib.pdb
+C:\Users\grego\Dropbox\CardLib\CardLib\bin\Debug\CardLib.dll
+C:\Users\grego\Dropbox\CardLib\CardLib\bin\Debug\CardLib.pdb
+C:\Users\grego\Dropbox\CardLib\CardLib\obj\Debug\CardLib.csproj.CoreCompileInputs.cache
+C:\Users\grego\Dropbox\CardLib\CardLib\obj\Debug\CardLib.dll
+C:\Users\grego\Dropbox\CardLib\CardLib\obj\Debug\CardLib.pdb
