@@ -3,74 +3,77 @@ using System.Collections.Generic;
 
 namespace CardLib
 {
-	public abstract class GameHand : IComparer<PlayingCard>
+	public abstract class GameHand : IEnumerable<PlayingCard>, IComparable<GameHand>
 	{
 		private string text;
 		public string Text { get { return text; } set { text = value; } }
-
-		private List<PlayingCard> hand = new List<PlayingCard>();
-		protected List<PlayingCard> Hand { get { return hand; } }
-
+		protected List<PlayingCard> Cards { get; private set; } = new List<PlayingCard>();
 		public abstract long Score { get; }
-		public virtual long Worth { get { return Score; } }
 		public virtual string Description { get { return ""; } }
-
 		public virtual void ClearHand()
 		{
-			hand.Clear();
+			Cards.Clear();
 		}
-		public void RemoveAt(int index) { hand.RemoveAt(index); }
-		public virtual bool Contains(PlayingCard card) { return hand.Contains(card); }
-
+		public void RemoveAt(int index) { Cards.RemoveAt(index); }
+		public virtual bool Contains(PlayingCard card) { return Cards.Contains(card); }
 		public virtual void AddCard(PlayingCard card)
 		{
 			card.FaceUp = true;
-			hand.Add(card);
+			Cards.Add(card);
 		}
-
 		public override string ToString()
 		{
 			string rep = "";
-			foreach (PlayingCard c in hand)
+			foreach (PlayingCard c in Cards)
 			{
 				rep = rep + c + " ";
 			}
 			return rep.Trim();
 		}
-
-		public int Count { get { return hand.Count; } }
-
+		public int Count { get { return Cards.Count; } }
 		public virtual PlayingCard this[int ix]
 		{
 			get
 			{
-				if (ix < hand.Count) return hand[ix];
+				if (ix < Cards.Count) return Cards[ix];
 				else return null;
 			}
 			set
 			{
 				value.FaceUp = true;
-				hand[ix] = value;
+				Cards[ix] = value;
 			}
 		}
-
-		public virtual int Compare(PlayingCard x, PlayingCard y)
-		{
-			if (x == null) throw new ArgumentNullException("x");
-			if (y == null) throw new ArgumentNullException("y");
-			if (x.Rank < y.Rank) return +1;
-			if (x.Rank > y.Rank) return -1;
-			return 0;
-		}
-
 		public System.Collections.IEnumerator GetEnumerator()
 		{
-			return hand.GetEnumerator();
+			return Cards.GetEnumerator();
 		}
-
-		public void SortHand(IComparer<PlayingCard> sorter)
+		IEnumerator<PlayingCard> IEnumerable<PlayingCard>.GetEnumerator()
 		{
-			hand.Sort(sorter);
+			return Cards.GetEnumerator();
 		}
+		public virtual void Sort(IComparer<PlayingCard> sorter)
+		{
+			Cards.Sort(sorter);
+		}
+		public virtual void Sort()
+		{
+			Cards.Sort();
+		}
+		public virtual int CompareTo(GameHand other)
+		{
+			if (other == null) throw new ArgumentException("other");
+			if (this.Score < other.Score) return -1;
+			if (this.Score > other.Score) return +1;
+			return 0;
+		}
+		//public static bool operator<(GameHand left, GameHand right)
+		//{
+		//	return left < right;
+		//}
+		//public static bool operator >(GameHand left, GameHand right)
+		//{
+		//	return left > right;
+		//}
 	}
 }

@@ -14,3 +14,4 @@ C:\Users\grego\Dropbox\_Development\_Repository\CardLib\CardLib\obj\Debug\CardLi
 C:\Users\grego\Dropbox\_Development\_Repository\CardLib\CardLib\obj\Debug\CardLib.csproj.CoreCompileInputs.cache
 C:\Users\grego\Dropbox\_Development\_Repository\CardLib\CardLib\obj\Debug\CardLib.dll
 C:\Users\grego\Dropbox\_Development\_Repository\CardLib\CardLib\obj\Debug\CardLib.pdb
+C:\Users\grego\source\repos\CardLib\CardLib\obj\Debug\CardLib.csprojAssemblyReference.cache
