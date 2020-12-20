@@ -17,9 +17,9 @@ namespace CardLib
 		public const string SuitCharactersAscii7Bit = "CDHS";
 		public const string RankCharacters = " A23456789TJQK";
 
-		private readonly int rank;
-		private readonly CardSuit suit;
-		private readonly int eyes;
+		private int rank;
+		private CardSuit suit;
+		private int eyes;
 		private PlayingCard wildcard;
 
 		public virtual int Rank { get { if (Wild && (wildcard != null)) return wildcard.Rank; return rank; } }
@@ -30,12 +30,19 @@ namespace CardLib
 		public bool Wild { get; set; }
 		public bool FaceUp { get; set; }
 		public PlayingCard Wildcard { get { return wildcard; } set { wildcard = value; } }
-
 		public PlayingCard(int rank, CardSuit suit)
 		{
 			if ((rank < 0) || (rank > King))
 				throw new ArgumentException("Invalid value for rank.");
+			InitializePlayingCard(rank, suit);
+		}
+		public PlayingCard(CardRank rank, CardSuit suit)
+		{
+			InitializePlayingCard((int)rank, suit);
+		}
 
+		private void InitializePlayingCard(int rank, CardSuit suit)
+		{
 			this.rank = rank;
 			this.suit = suit;
 			if (rank >= Jack) this.eyes = 2;
@@ -43,7 +50,6 @@ namespace CardLib
 			if ((rank == Jack) && (suit == CardSuit.Spades)) this.eyes = 1;
 			if ((rank == Jack) && (suit == CardSuit.Hearts)) this.eyes = 1;
 		}
-
 		public PlayingCard Flip() { FaceUp = !FaceUp; return this; }
 
 		/// <summary>
